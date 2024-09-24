@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Random Numbers and QR Codes</title>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- Bootstrap -->
+<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assests/bootstrap/css/bootstrap-theme.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="assests/font-awesome/css/font-awesome.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="custom/css/custom.css">
+
+<!-- DataTables -->
+<link rel="stylesheet" href="assests/plugins/datatables/jquery.dataTables.min.css">
+
+<!-- File input -->
+<link rel="stylesheet" href="assests/plugins/fileinput/css/fileinput.min.css">
+
+<!-- jQuery -->
+<script src="assests/jquery/jquery.min.js"></script>
+<!-- jQuery UI -->
+<link rel="stylesheet" href="assests/jquery-ui/jquery-ui.min.css">
+<script src="assests/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="assests/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-static-top" style="background-color: #126fcd">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+    
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="flex-grow: 1;">      
+                <ul class="nav navbar-nav navbar-right">        
+                    <li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i> Dashboard</a></li>        
+                       
+                    <li id="navCategories" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                            <i class="glyphicon glyphicon-th-list"></i> Category <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">   
+                          <li id="topNavBank"><a href="brand.php"> <i class="glyphicon glyphicon-piggy-bank"></i> brand</a></li>
+                            <li id="topNavBank"><a href="bank.php"> <i class="glyphicon glyphicon-piggy-bank"></i> Bank</a></li>
+                            <li id="topNavBank"><a href="categories.php"> <i class="glyphicon glyphicon-piggy-bank"></i> product category</a></li>
+                             <li id="topNavBank"><a href="  sellsLocation.php"> <i class="glyphicon glyphicon-piggy-bank"></i>   sellsLocation</a></li>
+                        </ul>
+                    </li>
+                    <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i> Product </a></li>  
+                    
+                       <li id="navProduct"><a href="stock.php"> <i class="glyphicon glyphicon-ruble"></i> Stock </a></li> 
+                       
+                        <li id="navProduct"><a href="wastage.php"> <i class="glyphicon glyphicon-ruble"></i> Wastage </a></li> 
+                        
+                       
+                    <li id="navProduct"><a href="expense.php"> <i class="glyphicon glyphicon-ruble"></i> Expense </a></li>
+                    <li id="navCredit"><a href="credit.php"> <i class="glyphicon glyphicon-ruble"></i> Credit </a></li>  
+                    <li class="dropdown" id="navOrder">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Orders <span class="caret"></span></a>
+                        <ul class="dropdown-menu">   
+                         <li id="topNavAddOrder"><a href="qr.html"> <i class="glyphicon glyphicon-plus"></i> qr code</a></li>  
+                            <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
+                            <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
+                        </ul>
+                    </li> 
+                      
+                      <li id="navReport"><a href="asset.php"> <i class="glyphicon glyphicon-user"></i> Asset</a></li>
+                       
+                    <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
+                    <li class="dropdown" id="navSetting">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
+                        <ul class="dropdown-menu"> 
+                             <li id="navReport"><a href="sellsUser.php"> <i class="glyphicon glyphicon-user"></i> Sells User</a></li>
+                          <li id="navReport"><a href="employee.php"> <i class="glyphicon glyphicon-user"></i> Employee</a></li>
+                        <li id="topNavSetting"><a href="register.php"> <i class="glyphicon glyphicon-plus"></i> registerSells</a></li>
+                            <li id="topNavSetting"><a href=" update_admin.php"> <i class="glyphicon glyphicon-wrench"></i> update_account</a></li>            
+                            <li id="topNavLogout"><a href="logout.php"> <i class="glyphicon glyphicon-log-out"></i> Logout</a></li>            
+                        </ul>
+                    </li>        
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Generate Random Numbers and QR Codes</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="generateForm">
+                            <div class="form-group">
+                                <label for="quantity">Enter the number of 10-digit numbers to generate:</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Generate</button>
+                        </form>
+                    </div>
+                        
+                </div>
+            </div>
+          
+                
+        </div>
+    </div>
+ 
+    <script>
+        document.getElementById('generateForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const numbers = [];
+            for (let i = 0; i < quantity; i++) {
+                numbers.push(String(Math.floor(Math.random() * 10000000000)).padStart(10, '0'));
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            let y = 10;
+            doc.text('No.', 10, y);
+            doc.text('Generated Number', 60, y);
+            doc.text('QR Code', 120, y);
+            y += 10;
+
+            numbers.forEach((number, index) => {
+                if (y + 50 > 280) { // Check if we need to add a new page
+                    doc.addPage();
+                    y = 10;
+                    doc.text('No.', 10, y);
+                    doc.text('Generated Number', 60, y);
+                    doc.text('QR Code', 120, y);
+                    y += 10;
+                }
+                const qrCodeUrl = `https://quickchart.io/qr?text=${encodeURIComponent(number)}&size=50`;
+                doc.text(String(index + 1), 10, y);
+                doc.text(number, 60, y);
+                doc.addImage(qrCodeUrl, 'JPEG', 120, y - 5, 50, 50);
+                y += 60;
+            });
+
+            doc.save('generated_numbers.pdf');
+        });
+        
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
