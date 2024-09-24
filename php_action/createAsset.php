@@ -8,7 +8,7 @@ require_once 'core.php';
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the posted data
-   $asset_name = $_POST['assetName'] ?? '';
+$asset_name = $_POST['assetName'] ?? '';
 $category = $_POST['category'] ?? '';
 $description = $_POST['description'] ?? '';
 $purchase_date = $_POST['purchaseDate'] ?? ''; // Updated field name

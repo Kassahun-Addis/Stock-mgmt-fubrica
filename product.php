@@ -59,9 +59,13 @@
                             $sql = "SELECT SUM(quantity * purchase_cost) AS total_asset_value FROM finished_good";
                             $result = $connect->query($sql);
                             $row = $result->fetch_assoc();
-                            $total_asset_value = $row['total_asset_value'];
+                            
+                            // Ensure total_asset_value is not NULL
+                            $total_asset_value = $row['total_asset_value'] ?? 0; // Use null coalescing operator
+
+                            // Format the total asset value for display
+                            echo '<p><strong>Total Asset Value:</strong> ' . number_format($total_asset_value, 2) . '</p>';
                         ?>
-                        <p><strong>Total Asset Value:</strong> <?php echo number_format($total_asset_value, 2); ?> </p>
                     </div> <!-- /panel-body -->
                 </div> <!-- /panel -->
                 <!-- End Asset Value Calculation Panel -->

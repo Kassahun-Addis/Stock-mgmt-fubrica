@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
         // Edit and Delete buttons with data attributes
         $button = '
         <div class="btn-group">
-            <button class="btn btn-warning btn-sm editWastageBtn" data-id="' . $id . '">
+            <button class="btn btn-warning btn-sm editWastageBtn me-1" data-id="' . $id . '">
                 <i class="glyphicon glyphicon-edit"></i> Edit
             </button>
             <button class="btn btn-danger btn-sm deleteWastageBtn" data-id="' . $id . '">

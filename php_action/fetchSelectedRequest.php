@@ -5,7 +5,7 @@ require_once 'db_connect.php'; // Ensure this includes database connection
 $itemId = $_POST['ItemID'];
 
 // Use parameterized query to prevent SQL injection
-$sql = "SELECT ItemID, ItemName, RequestedBy, IssuedBy, ApprovedBy, Quantity, Unit, UnitPrice, TotalPrice, QuantityAvailable, Remark, OrderDate FROM request_order WHERE ItemID = ?";
+$sql = "SELECT ItemID, ItemName, RequestedBy, IssuedBy, ApprovedBy, Quantity, Unit, UnitPrice, TotalPrice, Remark, OrderDate FROM request_order WHERE ItemID = ?";
 $stmt = $connect->prepare($sql);
 $stmt->bind_param("i", $itemId);
 

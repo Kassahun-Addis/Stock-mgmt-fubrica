@@ -14,19 +14,19 @@ if ($_POST) {
     $unit = $_POST['Unit'];
     $unitPrice = $_POST['UnitPrice'];
     $totalPrice = $_POST['TotalPrice'];
-    $quantityAvailable = $_POST['QuantityAvailable'];
+    //$quantityAvailable = $_POST['QuantityAvailable'];
     $remark = $_POST['Remark'];
     $orderDate = $_POST['OrderDate'];
 
     // Prepare the SQL query with placeholders
     $sql = "UPDATE request_order 
-            SET ItemName = ?, RequestedBy = ?, IssuedBy = ?, ApprovedBy = ?, Quantity = ?, Unit = ?, UnitPrice = ?, TotalPrice = ?, QuantityAvailable = ?, Remark = ?, OrderDate = ? 
+            SET ItemName = ?, RequestedBy = ?, IssuedBy = ?, ApprovedBy = ?, Quantity = ?, Unit = ?, UnitPrice = ?, TotalPrice = ?, Remark = ?, OrderDate = ? 
             WHERE ItemID = ?";
 
     // Initialize the database connection (assuming $connect is your connection variable)
     if ($stmt = $connect->prepare($sql)) {
         // Bind the variables to the prepared statement
-        $stmt->bind_param("ssssisddissi", $itemName, $requestedBy, $issuedBy, $approvedBy, $quantity, $unit, $unitPrice, $totalPrice, $quantityAvailable, $remark, $orderDate, $itemId);
+        $stmt->bind_param("ssssisddissi", $itemName, $requestedBy, $issuedBy, $approvedBy, $quantity, $unit, $unitPrice, $totalPrice, $remark, $orderDate, $itemId);
 
         // Execute the statement
         if ($stmt->execute()) {

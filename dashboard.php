@@ -77,11 +77,13 @@
                      <li id="topNavAddOrder"><a href="qr.html"> <i class="glyphicon glyphicon-plus"></i> qr code</a></li>  
                         <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
                         <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
-                    </ul>
+						<li id="topNavManageOrder"><a href="request_orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Add Requests</a></li>            
+					</ul>
                 </li> 
                   
                   <li id="navReport"><a href="asset.php"> <i class="glyphicon glyphicon-user"></i> Asset</a></li>
-                   
+				  <li id="navReport"><a href="shipment.php"> <i class="glyphicon glyphicon-user"></i> Shipment</a></li>
+
                 <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
                 <li class="dropdown" id="navSetting">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>

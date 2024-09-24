@@ -27,10 +27,10 @@
 <body style="background-color: #dedede">
 
 <nav class="navbar navbar-static-top" style="background-color: #126fcd">
-    <div class="container" style="display: flex; align-items: center;">
+    <div class="container-flud" style="display: flex; align-items: center;">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="display: flex; align-items: center;">
-            <a class="navbar-brand" href="index.php" style="margin-right: 15px;">
+            <a class="navbar-brand" href="index.php" style="margin-right: 3px;">
                 <img src="yoyologo.png" alt="Company Logo" style="height: 40px;">
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="margin-top: 0;">
@@ -77,7 +77,8 @@
                 </li> 
                   
                   <li id="navReport"><a href="asset.php"> <i class="glyphicon glyphicon-user"></i> Asset</a></li>
-                   
+                  <li id="navReport"><a href="shipment.php"> <i class="glyphicon glyphicon-user"></i> Shipment</a></li>
+
                 <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
                 <li class="dropdown" id="navSetting">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>

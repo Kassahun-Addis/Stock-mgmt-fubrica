@@ -238,13 +238,6 @@ if (isset($_SESSION['success_message'])) {
                     </div>
 
                     <div class="form-group row">
-                        <label for="QuantityAvailable" class="col-sm-3 control-label">Quantity Available</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" id="QuantityAvailable" name="QuantityAvailable" placeholder="Quantity Available" autocomplete="off" >
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label for="RequestedBy" class="col-sm-3 control-label">Requested By</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="RequestedBy" name="RequestedBy" placeholder="Requested By" autocomplete="off">
