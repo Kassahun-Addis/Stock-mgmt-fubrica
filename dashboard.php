@@ -1,5 +1,54 @@
 <?php require_once 'php_action/core.php'; ?>
 
+
+
+<script>
+function markAsRead(productName) {
+    // Make an AJAX call to mark the notification as read in the database
+    fetch('mark_as_read.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ product_name: productName }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the notification icon count and remove the notification message
+            const notificationIcon = document.getElementById('notification-count');
+            let currentCount = parseInt(notificationIcon.innerText);
+
+            if (currentCount > 0) {
+                notificationIcon.innerText = currentCount - 1;
+            }
+
+            // Remove the notification message from the UI
+            const notificationElements = document.querySelectorAll('.notification');
+            notificationElements.forEach((notification) => {
+                if (notification.getAttribute('data-product') === productName) {
+                    notification.remove();
+                }
+            });
+
+            // If no more notifications, take an action (e.g., hide the dropdown)
+            const remainingNotifications = document.querySelectorAll('.notification').length;
+            if (remainingNotifications === 0) {
+                document.getElementById('navNotifications').classList.remove('dropdown-open');
+                notificationIcon.style.display = 'none'; // Optionally hide the notification badge
+            }
+        } else {
+            alert('Failed to mark as read.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+</script>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +86,7 @@
 <body style="background-color: #dedede">
 
 <nav class="navbar navbar-static-top" style="background-color: #126fcd">
-	<div class="container">
+	<div class="container-flud">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 				<span class="sr-only">Toggle navigation</span>
@@ -83,6 +132,63 @@
                   
                   <li id="navReport"><a href="asset.php"> <i class="glyphicon glyphicon-user"></i> Asset</a></li>
 				  <li id="navReport"><a href="shipment.php"> <i class="glyphicon glyphicon-user"></i> Shipment</a></li>
+<!-- Notification Icon -->
+<li class="dropdown" id="navNotifications">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <i class="glyphicon glyphicon-bell"></i>
+        <span class="badge" id="notification-count">
+            <?php 
+            // Initialize the counter here
+            $countLowProduct = 0; 
+            echo $countLowProduct; 
+            ?>
+        </span>
+    </a>
+    <ul class="dropdown-menu" id="notification-menu">
+        <!-- Notifications will be populated here -->
+        <?php
+        // Initialize notifications array
+        $notifications = [];
+
+        // Query to count low-stock products and fetch notifications
+        $query = "SELECT product_name, quantity, alert_quantity, is_read 
+          FROM product 
+          WHERE quantity < alert_quantity AND is_read = 0"; // Only fetch unread notifications
+
+
+       $result = mysqli_query($connect, $query);
+
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $notifications[] = [
+            'product_name' => $row['product_name'],
+            'message' => "Low stock alert for {$row['product_name']}: only {$row['quantity']} left.",
+            'current_quantity' => $row['quantity'],
+            'alert_quantity' => $row['alert_quantity'],
+            'is_read' => $row['is_read'] ?? 0, // Use null coalescing to set a default value if not found
+        ];
+        $countLowProduct++; // Increment the counter for each low-stock product
+    }
+}
+
+
+        // Update the notification count in the badge
+        echo "<script>document.getElementById('notification-count').innerText = $countLowProduct;</script>";
+
+        // Populate notifications in the dropdown menu
+      // Populate notifications in the dropdown menu
+// Populate notifications in the dropdown menu
+foreach ($notifications as $notification) {
+    $notificationClass = $notification['is_read'] ? 'read' : 'unread'; // Add a class based on read status
+    echo "<li class='notification $notificationClass' data-product='{$notification['product_name']}'>";
+    echo "{$notification['message']}"; // Displaying the message
+    echo "<button onclick='markAsRead(\"{$notification['product_name']}\")'>Mark as Read</button>";
+    echo "</li>";
+}
+
+        ?>
+    </ul>
+</li>
 
                 <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
                 <li class="dropdown" id="navSetting">

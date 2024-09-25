@@ -123,3 +123,83 @@ nav .nav>li>a {
       margin-right: 0;
   }
 
+      /* Style for the notification dropdown menu */
+      #notification-menu {
+          max-height: 300px; /* Adjust the max height as needed */
+          max-width: 400px;  /* Adjust the max width as needed */
+          overflow-y: auto;  /* Enable vertical scrolling */
+          overflow-x: auto;  /* Enable horizontal scrolling */
+          padding: 10px;
+          background-color: #f9f9f9; /* Light background for readability */
+          border: 1px solid #ccc;     /* Border for the dropdown */
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+      }
+  
+      /* Style for individual notifications */
+      .notification {
+          padding: 8px;
+          border-bottom: 1px solid #eaeaea;
+          word-wrap: break-word; /* Handle long words */
+      }
+  
+      .notification:last-child {
+          border-bottom: none;
+      }
+  
+      /* Style for the badge showing the notification count */
+      #notification-count {
+          background-color: red;
+          color: white;
+          border-radius: 50%;
+          padding: 5px 10px;
+          font-size: 12px;
+      }
+  
+      /* Style for the "Mark as Read" button */
+      .notification button {
+          background-color: #007bff; /* Bootstrap blue color */
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 12px;
+      }
+  
+      .notification button:hover {
+          background-color: #0056b3; /* Darker blue on hover */
+      }
+  
+      /* Dropdown styling */
+      .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          z-index: 1000;
+          display: none;
+          float: left;
+          min-width: 260px;
+          padding: 5px 0;
+          margin: 2px 0 0;
+          font-size: 14px;
+          text-align: left;
+          list-style: none;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      }
+  
+      /* Dropdown open */
+      .dropdown.open .dropdown-menu {
+          display: block;
+      }
+
+      .notification.read {
+        color: gray; /* Gray for read notifications */
+    }
+    .notification.unread {
+        color: black; /* Black for unread notifications */
+        font-weight: bold; /* Bold for emphasis */
+    }
+    
